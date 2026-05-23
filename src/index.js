@@ -6,14 +6,15 @@ dotenv.config(
 );
 
 
-connectDB();
-
-
-
-
-
-
-
+connectDB()
+.then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
+    })
+})
+.catch((error) => {
+    console.error("Failed to connect to MongoDB:", error);
+})
 
 
 
@@ -47,4 +48,4 @@ connectDB();
 //     console.error("Failed to connect to MongoDB:", error);
 //     throw error; // Rethrow the error to be caught by the outer catch block
 //   }
-// })();
+// })()
